@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ResearchLens is an AI-powered research gap identifier and trend analyzer for academic research lifecycle support."
+    />
+    <title>ResearchLens | AI Powered Research Gap Identifier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="ResearchLens home">
+        <img src="researchlens-logo.png" alt="" />
+        <span>ResearchLens</span>
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#domain">Domain</a>
+        <a href="#milestones">Milestones</a>
+        <a href="#documents">Documents</a>
+        <a href="#slides">Slides</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section-band" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">AI Powered Research Gap Identifier and Trend Analyzer</p>
+          <h1>ResearchLens</h1>
+          <p class="hero-text">
+            A research lifecycle platform that helps students discover meaningful research gaps,
+            identify emerging trends, connect with suitable supervisors, and maintain trusted
+            academic progress records.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#domain">Explore Domain</a>
+            <a class="button secondary" href="#milestones">View Milestones</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="ResearchLens platform overview">
+          <div class="lens-orbit">
+            <img src="researchlens-logo.png" alt="ResearchLens logo" />
+          </div>
+          <div class="signal-card card-one">
+            <span>Semantic Gap</span>
+            <strong>Novelty scoring</strong>
+          </div>
+          <div class="signal-card card-two">
+            <span>Integrity</span>
+            <strong>Ledger proof</strong>
+          </div>
+          <div class="signal-card card-three">
+            <span>Workspace</span>
+            <strong>NLP summary</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-strip">
+        <div>
+          <span class="metric">4</span>
+          <p>Integrated research support modules</p>
+        </div>
+        <div>
+          <span class="metric">GNN</span>
+          <p>Supervisor recommendations with workload awareness</p>
+        </div>
+        <div>
+          <span class="metric">SHA-256</span>
+          <p>Tamper-evident submission and audit records</p>
+        </div>
+      </section>
+
+      <section class="section" id="domain">
+        <div class="section-heading">
+          <p class="eyebrow">Domain</p>
+          <h2>Research lifecycle intelligence for academic projects</h2>
+          <p>
+            ResearchLens focuses on reducing uncertainty in undergraduate research by combining
+            semantic analysis, trend exploration, supervisor matching, and governance workflows in
+            one platform.
+          </p>
+        </div>
+
+        <div class="domain-grid">
+          <article>
+            <h3>Literature Survey</h3>
+            <p>
+              The project investigates semantic similarity detection, academic trend analysis,
+              graph-based recommendation, blockchain-inspired audit trails, and NLP-based progress
+              summarization for research supervision.
+            </p>
+          </article>
+          <article>
+            <h3>Research Gap</h3>
+            <p>
+              Existing academic tools often support only one isolated task. Students still struggle
+              to validate novelty, identify relevant supervisors, prove submission integrity, and
+              summarize progress without switching between disconnected systems.
+            </p>
+          </article>
+          <article>
+            <h3>Research Problem</h3>
+            <p>
+              How can an AI-assisted platform help students identify research gaps and trends while
+              supporting trustworthy academic workflows from topic submission to supervisor review?
+            </p>
+          </article>
+          <article>
+            <h3>Research Objectives</h3>
+            <p>
+              Build semantic gap detection, recommend supervisors through graph intelligence,
+              preserve submission evidence through integrity governance, and assist supervisors with
+              concise NLP-generated progress summaries.
+            </p>
+          </article>
+          <article>
+            <h3>Methodology</h3>
+            <p>
+              ResearchLens combines SBERT embeddings, FAISS vector search, GraphSAGE scoring,
+              PostgreSQL-backed services, Sepolia evidence anchoring, Socket.IO collaboration, and a
+              fine-tuned BART summarization service.
+            </p>
+          </article>
+          <article>
+            <h3>Technologies Used</h3>
+            <p>
+              React, Node.js, FastAPI, PostgreSQL, Docker, SBERT, FAISS, Graph Neural Networks,
+              Web3.py, Solidity, SHA-256, BART, Gemini AI, and Socket.IO.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section feature-section">
+        <div class="section-heading">
+          <p class="eyebrow">Platform Modules</p>
+          <h2>Built around the real research workflow</h2>
+        </div>
+        <div class="module-row">
+          <article class="module-card">
+            <span>01</span>
+            <h3>Research Gap Detection</h3>
+            <p>Analyzes proposals and academic text to surface semantic similarity, novelty signals, and related research directions.</p>
+          </article>
+          <article class="module-card">
+            <span>02</span>
+            <h3>Integrity & Governance</h3>
+            <p>Maintains tamper-evident academic records using hash-linked ledger events and external Sepolia anchoring.</p>
+          </article>
+          <article class="module-card">
+            <span>03</span>
+            <h3>Supervisor Recommendation</h3>
+            <p>Matches students with supervisors using research interests, collaboration networks, workload, and GNN similarity scoring.</p>
+          </article>
+          <article class="module-card">
+            <span>04</span>
+            <h3>Workspace Assistant</h3>
+            <p>Supports logbooks, group chat, GitHub analytics, milestone tracking, and AI-assisted supervisor feedback.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="milestones">
+        <div class="section-heading compact">
+          <p class="eyebrow">Milestones</p>
+          <h2>Assessment timeline</h2>
+        </div>
+        <label class="select-label" for="milestoneSelect">Choose assessment</label>
+        <select id="milestoneSelect" class="milestone-select">
+          <option value="proposal">Project Proposal</option>
+          <option value="pp1">Progress Presentation 1</option>
+          <option value="pp2">Progress Presentation 2</option>
+          <option value="final">Final Assessment</option>
+          <option value="viva">Viva</option>
+        </select>
+        <div class="milestone-panel" aria-live="polite">
+          <p class="milestone-date" id="milestoneDate">To be updated</p>
+          <h3 id="milestoneTitle">Project Proposal</h3>
+          <p id="milestoneDescription">
+            Initial research scope, problem definition, objectives, methodology, and project plan.
+          </p>
+          <span id="milestoneMarks">Marks allocation: To be updated</span>
+        </div>
+      </section>
+
+      <section class="section resource-section" id="documents">
+        <div class="section-heading compact">
+          <p class="eyebrow">Documents</p>
+          <h2>Project documentation</h2>
+          <p>Add final document links here when the files are uploaded to cloud storage or the course web space.</p>
+        </div>
+        <div class="resource-grid">
+          <a href="#" aria-disabled="true">Project Charter <span>Pending link</span></a>
+          <a href="#" aria-disabled="true">Proposal Document <span>Pending link</span></a>
+          <a href="#" aria-disabled="true">Checklist Documents <span>Pending link</span></a>
+          <a href="#" aria-disabled="true">Final Document <span>Pending link</span></a>
+        </div>
+      </section>
+
+      <section class="section resource-section" id="slides">
+        <div class="section-heading compact">
+          <p class="eyebrow">Slides</p>
+          <h2>Presentation archive</h2>
+          <p>Keep presentation slides accessible here for evaluators and future project reviews.</p>
+        </div>
+        <div class="resource-grid">
+          <a href="#" aria-disabled="true">Proposal Presentation <span>Pending link</span></a>
+          <a href="#" aria-disabled="true">Progress Presentation 1 <span>Pending link</span></a>
+          <a href="#" aria-disabled="true">Progress Presentation 2 <span>Pending link</span></a>
+          <a href="#" aria-disabled="true">Final Presentation <span>Pending link</span></a>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-heading">
+          <p class="eyebrow">About Us</p>
+          <h2>Research team</h2>
+          <p>
+            Add member photographs, student IDs, and component ownership here. The structure is ready
+            for the final group profile content.
+          </p>
+        </div>
+        <div class="team-grid">
+          <article class="person-card">
+            <div class="avatar">RL</div>
+            <h3>Team Member 1</h3>
+            <p>Research Gap & Trend Analysis</p>
+            <a href="mailto:student1@my.sliit.lk">student1@my.sliit.lk</a>
+          </article>
+          <article class="person-card">
+            <div class="avatar">RL</div>
+            <h3>Team Member 2</h3>
+            <p>Integrity & Governance</p>
+            <a href="mailto:student2@my.sliit.lk">student2@my.sliit.lk</a>
+          </article>
+          <article class="person-card">
+            <div class="avatar">RL</div>
+            <h3>Team Member 3</h3>
+            <p>Recommendation & Collaboration</p>
+            <a href="mailto:student3@my.sliit.lk">student3@my.sliit.lk</a>
+          </article>
+          <article class="person-card">
+            <div class="avatar">RL</div>
+            <h3>Team Member 4</h3>
+            <p>Workspace NLP Assistant</p>
+            <a href="mailto:student4@my.sliit.lk">student4@my.sliit.lk</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div>
+          <p class="eyebrow">Contact Us</p>
+          <h2>Let’s connect about ResearchLens</h2>
+          <p>Use the project email template below to direct evaluation, documentation, or demonstration requests to the team.</p>
+        </div>
+        <form class="contact-form">
+          <input type="text" name="name" placeholder="Your name" aria-label="Your name" />
+          <input type="email" name="email" placeholder="Email address" aria-label="Email address" />
+          <textarea name="message" rows="4" placeholder="Message" aria-label="Message"></textarea>
+          <button type="submit">Prepare Email</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 ResearchLens | SLIIT Research Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
