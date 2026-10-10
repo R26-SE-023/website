@@ -265,13 +265,17 @@
         <div>
           <p class="eyebrow">Contact Us</p>
           <h2>Let’s connect about ResearchLens</h2>
-          <p>Use the project email template below to direct evaluation, documentation, or demonstration requests to the team.</p>
+          <p>Contact the team about evaluation, documentation, or a ResearchLens demonstration.</p>
         </div>
-        <form class="contact-form">
-          <input type="text" name="name" placeholder="Your name" aria-label="Your name" />
-          <input type="email" name="email" placeholder="Email address" aria-label="Email address" />
-          <textarea name="message" rows="4" placeholder="Message" aria-label="Message"></textarea>
-          <button type="submit">Prepare Email</button>
+        <form class="contact-form" data-endpoint="https://api.researchlens.tech/api/contact">
+          <input type="text" name="name" placeholder="Your name" aria-label="Your name" autocomplete="name" maxlength="100" required />
+          <input type="email" name="email" placeholder="Email address" aria-label="Email address" autocomplete="email" maxlength="254" required />
+          <textarea name="message" rows="4" placeholder="Message" aria-label="Message" minlength="10" maxlength="5000" required></textarea>
+          <div class="contact-honeypot" aria-hidden="true" inert>
+            <input type="text" name="company" tabindex="-1" autocomplete="off" aria-label="Company" />
+          </div>
+          <button type="submit">Send Message</button>
+          <p class="contact-status" role="status" aria-live="polite" aria-atomic="true"></p>
         </form>
       </section>
     </main>
