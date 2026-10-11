@@ -440,6 +440,7 @@ h3 {
 }
 
 .contact-form input,
+.contact-form select,
 .contact-form textarea {
   width: 100%;
   padding: 15px 16px;
@@ -448,6 +449,11 @@ h3 {
   color: white;
   background: rgba(255, 255, 255, 0.08);
   font: inherit;
+}
+
+.contact-form select option {
+  color: #12344d;
+  background: white;
 }
 
 .contact-form input::placeholder,

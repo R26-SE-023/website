@@ -268,8 +268,16 @@
           <p>Contact the team about evaluation, documentation, or a ResearchLens demonstration.</p>
         </div>
         <form class="contact-form" data-endpoint="https://api.researchlens.tech/api/contact">
+          <label for="contact-recipient">Send to</label>
+          <select id="contact-recipient" name="recipient" required>
+            <option value="" disabled selected>Select a team member</option>
+            <option value="kusalya">Kusalya Widanagama</option>
+            <option value="panduka">Panduka Wijesinghe</option>
+            <option value="muditha">Muditha Bandara</option>
+            <option value="darshan">Darshan R</option>
+          </select>
           <input type="text" name="name" placeholder="Your name" aria-label="Your name" autocomplete="name" maxlength="100" required />
-          <input type="email" name="email" placeholder="Email address" aria-label="Email address" autocomplete="email" maxlength="254" required />
+          <input type="email" name="email" placeholder="Email address" aria-label="Email address" autocomplete="email" maxlength="254" pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required />
           <textarea name="message" rows="4" placeholder="Message" aria-label="Message" minlength="10" maxlength="5000" required></textarea>
           <div class="contact-honeypot" aria-hidden="true" inert>
             <input type="text" name="company" tabindex="-1" autocomplete="off" aria-label="Company" />

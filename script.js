@@ -74,7 +74,7 @@ document.querySelector(".contact-form").addEventListener("submit", async (event)
   status.textContent = "";
   status.removeAttribute("data-state");
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 45000);
+  const timeout = setTimeout(() => controller.abort(), 90000);
 
   try {
     const response = await fetch(form.dataset.endpoint, {
@@ -83,6 +83,7 @@ document.querySelector(".contact-form").addEventListener("submit", async (event)
       credentials: "omit",
       signal: controller.signal,
       body: JSON.stringify({
+        recipient: fields.get("recipient"),
         name: fields.get("name"),
         email: fields.get("email"),
         message: fields.get("message"),
@@ -97,7 +98,7 @@ document.querySelector(".contact-form").addEventListener("submit", async (event)
     }
     form.reset();
     status.dataset.state = "success";
-    status.textContent = "Your message has been sent. Thank you for contacting ResearchLens.";
+    status.textContent = result.message || "Your message has been sent. Thank you for contacting ResearchLens.";
   } catch (error) {
     status.dataset.state = "error";
     status.textContent = error.name === "AbortError"
