@@ -977,3 +977,64 @@ body.dark-mode .theme-toggle {
   color: #f3f8fc;
   border-color: var(--line);
 }
+/* Supervisor and co-supervisor cards */
+
+.supervisor-section {
+  margin-top: 72px;
+}
+
+.supervisor-section .section-heading {
+  margin-bottom: 28px;
+}
+
+.supervisor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.supervisor-card {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 12px 30px rgba(21, 32, 43, 0.08);
+}
+
+.supervisor-role {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(15, 139, 141, 0.12);
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.supervisor-card h3 {
+  margin: 0 0 10px;
+  color: #0f3554;
+}
+
+.supervisor-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+body.dark-mode .supervisor-card {
+  background: #0d2134;
+  border-color: var(--line);
+}
+
+body.dark-mode .supervisor-card h3 {
+  color: #f3f8fc;
+}
+
+@media (max-width: 760px) {
+  .supervisor-grid {
+    grid-template-columns: 1fr;
+  }
+}
