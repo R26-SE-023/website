@@ -108,10 +108,17 @@ p {
 
 h1 {
   margin: 0;
-  font-size: clamp(52px, 8vw, 112px);
-  line-height: 0.95;
-  letter-spacing: 0;
+  font-size: clamp(44px, 6vw, 82px);
+  line-height: 1;
+  letter-spacing: -2px;
   color: #0f3554;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  h1 {
+    font-size: clamp(42px, 14vw, 64px);
+    white-space: normal;
+  }
 }
 
 h2 {
