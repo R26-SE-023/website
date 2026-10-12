@@ -52,13 +52,15 @@ const milestoneTitle = document.querySelector("#milestoneTitle");
 const milestoneDescription = document.querySelector("#milestoneDescription");
 const milestoneMarks = document.querySelector("#milestoneMarks");
 
-milestoneSelect.addEventListener("change", (event) => {
-  const item = milestones[event.target.value];
-  milestoneDate.textContent = item.date;
-  milestoneTitle.textContent = item.title;
-  milestoneDescription.textContent = item.description;
-  milestoneMarks.textContent = item.marks;
-});
+if (milestoneSelect && milestoneDate && milestoneTitle && milestoneDescription && milestoneMarks) {
+  milestoneSelect.addEventListener("change", (event) => {
+    const item = milestones[event.target.value];
+    milestoneDate.textContent = item.date;
+    milestoneTitle.textContent = item.title;
+    milestoneDescription.textContent = item.description;
+    milestoneMarks.textContent = item.marks;
+  });
+}
 
 document.querySelector(".contact-form").addEventListener("submit", async (event) => {
   event.preventDefault();
