@@ -1,4 +1,22 @@
 const navToggle = document.querySelector(".nav-toggle");
+
+document.querySelectorAll(".resource-grid a").forEach((link) => {
+  const isVideo = Boolean(link.closest("#videos"));
+  const isPdf = new URL(link.href).pathname.toLowerCase().endsWith(".pdf");
+  if (!isVideo && !isPdf) return;
+
+  link.classList.add("resource-link");
+  link.rel = "noopener noreferrer";
+  const action = document.createElement("span");
+  action.className = "resource-action";
+  const icon = document.createElement("i");
+  icon.setAttribute("data-lucide", isVideo ? "play" : "file-text");
+  icon.setAttribute("aria-hidden", "true");
+  action.append(icon, document.createTextNode(isVideo ? "Play Video" : "View PDF"));
+  action.title = isVideo ? "Play video in a new tab" : "View PDF in a new tab";
+  link.append(action);
+});
+window.lucide?.createIcons();
 const siteNav = document.querySelector(".site-nav");
 
 navToggle.addEventListener("click", () => {

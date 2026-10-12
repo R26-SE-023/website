@@ -392,6 +392,43 @@ h3 {
   font-weight: 700;
 }
 
+.resource-grid .resource-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  overflow-wrap: anywhere;
+}
+
+.resource-link > span:not(.resource-action) {
+  margin-top: 0;
+}
+
+.resource-grid .resource-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  margin-top: auto;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: #12344d;
+  background: #f0f7f7;
+}
+
+.resource-action svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.resource-link:hover .resource-action,
+.resource-link:focus-visible .resource-action {
+  background: #dceeed;
+  border-color: #397c79;
+}
+
 .team-grid {
   grid-template-columns: repeat(4, 1fr);
 }
