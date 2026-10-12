@@ -112,4 +112,15 @@ document.querySelector(".contact-form").addEventListener("submit", async (event)
     button.textContent = "Send Message";
     form.removeAttribute("aria-busy");
   }
+
+  const themeToggle = document.querySelector(".theme-toggle");
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    const isDark = document.body.classList.contains("dark-mode");
+    themeToggle.textContent = isDark ? "Light Mode" : "Dark Mode";
+  });
+}
 });
