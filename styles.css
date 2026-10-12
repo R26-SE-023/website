@@ -114,12 +114,6 @@ h1 {
   color: #0f3554;
   white-space: nowrap;
 }
-@media (max-width: 640px) {
-  h1 {
-    font-size: clamp(42px, 14vw, 64px);
-    white-space: normal;
-  }
-}
 
 h2 {
   margin: 0;
@@ -837,4 +831,112 @@ footer {
   .timeline-card {
     padding: 20px;
   }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: clamp(42px, 14vw, 64px);
+    white-space: normal;
+  }
+}
+/* Dark Mode */
+
+.theme-toggle {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: white;
+  color: #0f3554;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+body.dark-mode {
+  --ink: #e8f1f8;
+  --muted: #b8c7d6;
+  --line: #26384a;
+  --paper: #071827;
+  --soft: #102338;
+  --blue: #5aa9ff;
+  --teal: #5bd4d2;
+  --green: #6ed39a;
+  --gold: #f5c76b;
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body.dark-mode .site-header {
+  background: rgba(7, 24, 39, 0.94);
+  border-bottom-color: var(--line);
+}
+
+body.dark-mode .brand,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+  color: #f3f8fc;
+}
+
+body.dark-mode .site-nav {
+  color: var(--muted);
+}
+
+body.dark-mode .section-band {
+  background:
+    linear-gradient(135deg, rgba(23, 105, 170, 0.18), rgba(15, 139, 141, 0.14)),
+    linear-gradient(180deg, #071827 0%, #102338 100%);
+}
+
+body.dark-mode .hero-text,
+body.dark-mode .section-heading p:not(.eyebrow),
+body.dark-mode .domain-grid p,
+body.dark-mode .module-card p,
+body.dark-mode .person-card p,
+body.dark-mode .intro-strip p {
+  color: var(--muted);
+}
+
+body.dark-mode .lens-orbit,
+body.dark-mode .domain-grid article,
+body.dark-mode .module-card,
+body.dark-mode .person-card,
+body.dark-mode .resource-grid a,
+body.dark-mode .timeline-card {
+  background: #0d2134;
+  border-color: var(--line);
+}
+
+body.dark-mode .signal-card {
+  background: #0d2134;
+  border-color: var(--line);
+}
+
+body.dark-mode .signal-card strong {
+  color: #f3f8fc;
+}
+
+body.dark-mode .intro-strip,
+body.dark-mode .feature-section,
+body.dark-mode .timeline-section,
+body.dark-mode footer {
+  background: #0a1c2e;
+}
+
+body.dark-mode .timeline-section .section-heading h2,
+body.dark-mode .timeline-card h3 {
+  color: #f3f8fc;
+}
+
+body.dark-mode .timeline-card p {
+  color: var(--muted);
+}
+
+body.dark-mode .button.secondary,
+body.dark-mode .theme-toggle {
+  background: #0d2134;
+  color: #f3f8fc;
+  border-color: var(--line);
 }
