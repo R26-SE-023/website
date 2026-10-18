@@ -397,7 +397,14 @@
             <i data-lucide="x" aria-hidden="true"></i>
           </button>
         </div>
-        <div class="video-dialog-player"></div>
+        <div class="video-dialog-player">
+          <div class="video-loading" role="status" aria-live="polite">
+            <span class="video-loading-spinner" aria-hidden="true"></span>
+            <span class="video-loading-message">Loading video...</span>
+            <button class="video-loading-reveal" type="button" hidden>Show player</button>
+          </div>
+          <div class="video-player-mount"></div>
+        </div>
       </dialog>
 
       <section class="section" id="about">
