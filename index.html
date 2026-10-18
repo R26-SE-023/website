@@ -379,17 +379,25 @@
           </p>
         </div>
         <div class="resource-grid">
-         <a href="https://youtu.be/9B0Dy1Bwttc?si=otgiM5iP9levRT1Z" target="_blank">
+         <a href="https://youtu.be/9B0Dy1Bwttc?si=otgiM5iP9levRT1Z" target="_blank" data-video-id="9B0Dy1Bwttc" data-video-title="Proposal presentation demo">
             proposal presentaion demo <span>Watch video</span>
           </a>
-          <a href="https://youtu.be/Wdm2CpHdINg" target="_blank">
+          <a href="https://youtu.be/Wdm2CpHdINg" target="_blank" data-video-id="Wdm2CpHdINg" data-video-title="PP2 demo">
             pp2 demo <span>Watch video</span>
           </a>
-          <a href="videos/panduka-component-demo.mp4" target="_blank">
-            Final Demo <span>Watch video</span>
-          </a>
+          <div class="resource-unavailable">Final Demo <span>Video coming soon</span></div>
         </div>
       </section>
+
+      <dialog class="video-dialog" aria-labelledby="video-dialog-title">
+        <div class="video-dialog-header">
+          <h2 id="video-dialog-title"></h2>
+          <button class="video-dialog-close" type="button" aria-label="Close video" title="Close video">
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="video-dialog-player"></div>
+      </dialog>
 
       <section class="section" id="about">
         <div class="section-heading">
