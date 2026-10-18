@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
       name="description"
       content="ResearchLens is an AI-powered research gap identifier and trend analyzer for academic research lifecycle support."
@@ -295,9 +296,9 @@
             <a href="documents/checklists/Checklist-1.pdf" target="_blank">
               Checklist 1 <span>View checklist</span>
             </a>
-            <a href="https://youtu.be/LbFI6CgwelM?si=TqSN6-8Fa56Hdach" target="_blank">
-            checklist 2 <span>Watch video</span>
-          </a>
+            <button type="button" class="resource-video" data-video-id="LbFI6CgwelM" data-video-title="Checklist 2 video">
+              Checklist 2 <span>Watch video</span>
+            </button>
             <a href="documents/checklists/Deployment_Report_R26-SE-023.pdf" target="_blank">
               Checklist 3 <span>View checklist</span>
             </a>
@@ -379,17 +380,32 @@
           </p>
         </div>
         <div class="resource-grid">
-         <a href="https://youtu.be/9B0Dy1Bwttc?si=otgiM5iP9levRT1Z" target="_blank">
-            proposal presentaion demo <span>Watch video</span>
-          </a>
-          <a href="https://youtu.be/Wdm2CpHdINg" target="_blank">
-            pp2 demo <span>Watch video</span>
-          </a>
-          <a href="videos/panduka-component-demo.mp4" target="_blank">
-            Final Demo <span>Watch video</span>
-          </a>
+          <button type="button" class="resource-video" data-video-id="9B0Dy1Bwttc" data-video-title="Proposal presentation demo">
+            Proposal presentation demo <span>Watch video</span>
+          </button>
+          <button type="button" class="resource-video" data-video-id="Wdm2CpHdINg" data-video-title="PP2 demo">
+            PP2 demo <span>Watch video</span>
+          </button>
+          <div class="resource-unavailable">Final Demo <span>Video coming soon</span></div>
         </div>
       </section>
+
+      <dialog class="video-dialog" aria-labelledby="video-dialog-title">
+        <div class="video-dialog-header">
+          <h2 id="video-dialog-title"></h2>
+          <button class="video-dialog-close" type="button" aria-label="Close video" title="Close video">
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="video-dialog-player">
+          <div class="video-loading" role="status" aria-live="polite">
+            <span class="video-loading-spinner" aria-hidden="true"></span>
+            <span class="video-loading-message">Loading video...</span>
+            <button class="video-loading-reveal" type="button" hidden>Show player</button>
+          </div>
+          <div class="video-player-mount"></div>
+        </div>
+      </dialog>
 
       <section class="section" id="about">
         <div class="section-heading">

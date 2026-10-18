@@ -1,22 +1,141 @@
 const navToggle = document.querySelector(".nav-toggle");
 
-document.querySelectorAll(".resource-grid a").forEach((link) => {
-  const isVideo = Boolean(link.closest("#videos"));
-  const isPdf = new URL(link.href).pathname.toLowerCase().endsWith(".pdf");
+document.querySelectorAll(".resource-grid a, .resource-grid button[data-video-id]").forEach((link) => {
+  const isVideo = link.hasAttribute("data-video-id");
+  const isPdf = link.tagName === "A" && new URL(link.href).pathname.toLowerCase().endsWith(".pdf");
   if (!isVideo && !isPdf) return;
 
   link.classList.add("resource-link");
-  link.rel = "noopener noreferrer";
+  if (link.tagName === "A") link.rel = "noopener noreferrer";
   const action = document.createElement("span");
   action.className = "resource-action";
   const icon = document.createElement("i");
   icon.setAttribute("data-lucide", isVideo ? "play" : "file-text");
   icon.setAttribute("aria-hidden", "true");
   action.append(icon, document.createTextNode(isVideo ? "Play Video" : "View PDF"));
-  action.title = isVideo ? "Play video in a new tab" : "View PDF in a new tab";
+  action.title = isVideo ? "Play video here" : "View PDF in a new tab";
   link.append(action);
 });
 window.lucide?.createIcons();
+
+const videoDialog = document.querySelector(".video-dialog");
+const videoMount = videoDialog.querySelector(".video-player-mount");
+const videoTitle = videoDialog.querySelector("#video-dialog-title");
+const videoLoading = videoDialog.querySelector(".video-loading");
+const videoLoadingMessage = videoDialog.querySelector(".video-loading-message");
+const videoLoadingSpinner = videoDialog.querySelector(".video-loading-spinner");
+const videoReveal = videoDialog.querySelector(".video-loading-reveal");
+let youtubeApiPromise;
+let youtubePlayer;
+let videoLoadTimeout;
+let videoRequest = 0;
+
+function loadYouTubeApi() {
+  if (window.YT?.Player) return Promise.resolve(window.YT);
+  if (!youtubeApiPromise) {
+    youtubeApiPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      const timeout = setTimeout(() => reject(new Error("YouTube API timed out")), 12000);
+      window.onYouTubeIframeAPIReady = () => {
+        clearTimeout(timeout);
+        resolve(window.YT);
+      };
+      script.onerror = () => {
+        clearTimeout(timeout);
+        reject(new Error("YouTube API failed to load"));
+      };
+      script.src = "https://www.youtube.com/iframe_api";
+      document.head.append(script);
+    }).catch((error) => {
+      youtubeApiPromise = null;
+      throw error;
+    });
+  }
+  return youtubeApiPromise;
+}
+
+function showVideoLoading(message, canReveal = false) {
+  videoLoading.hidden = false;
+  videoLoadingMessage.textContent = message;
+  videoLoadingSpinner.hidden = canReveal;
+  videoReveal.hidden = !canReveal;
+}
+
+videoReveal.addEventListener("click", () => {
+  videoLoading.hidden = true;
+});
+
+document.querySelectorAll(".resource-grid button[data-video-id]").forEach((link) => {
+  link.addEventListener("click", async () => {
+    const request = ++videoRequest;
+    videoTitle.textContent = link.dataset.videoTitle;
+    if (!/^https?:$/.test(window.location.protocol)) {
+      const notice = document.createElement("p");
+      notice.className = "video-dialog-notice";
+      notice.textContent = "Open this website through its published address or a local HTTP server to play videos.";
+      videoLoading.hidden = true;
+      videoMount.replaceChildren(notice);
+      videoDialog.showModal();
+      return;
+    }
+    const frame = document.createElement("iframe");
+    const embed = new URL(`https://www.youtube.com/embed/${link.dataset.videoId}`);
+    embed.searchParams.set("autoplay", "1");
+    embed.searchParams.set("rel", "0");
+    embed.searchParams.set("origin", window.location.origin);
+    embed.searchParams.set("enablejsapi", "1");
+    frame.src = embed.href;
+    frame.title = link.dataset.videoTitle;
+    frame.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share";
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = "origin";
+    showVideoLoading("Loading video...");
+    videoMount.replaceChildren(frame);
+    videoDialog.showModal();
+    videoLoadTimeout = setTimeout(() => {
+      if (request === videoRequest) showVideoLoading("This is taking longer than expected. You can show the player and try its controls.", true);
+    }, 20000);
+
+    try {
+      const YT = await loadYouTubeApi();
+      if (request !== videoRequest) return;
+      youtubePlayer = new YT.Player(frame, {
+        events: {
+          onReady: (event) => event.target.playVideo(),
+          onStateChange: (event) => {
+            if (request === videoRequest && event.data === YT.PlayerState.PLAYING) {
+              clearTimeout(videoLoadTimeout);
+              videoLoading.hidden = true;
+            }
+          },
+          onAutoplayBlocked: () => {
+            if (request === videoRequest) showVideoLoading("Autoplay was blocked. Show the player and press play.", true);
+          },
+          onError: () => {
+            if (request === videoRequest) showVideoLoading("The video could not start. Show the player to check its controls.", true);
+          },
+        },
+      });
+    } catch {
+      if (request === videoRequest) showVideoLoading("The video player could not load. Show the player to try again.", true);
+    }
+  });
+});
+
+videoDialog.querySelector(".video-dialog-close").addEventListener("click", () => videoDialog.close());
+videoDialog.addEventListener("click", (event) => {
+  if (event.target === videoDialog) videoDialog.close();
+});
+videoDialog.addEventListener("close", () => {
+  videoRequest += 1;
+  clearTimeout(videoLoadTimeout);
+  youtubePlayer?.destroy();
+  youtubePlayer = null;
+  videoMount.replaceChildren();
+  videoLoading.hidden = true;
+  videoTitle.textContent = "";
+});
+
 const siteNav = document.querySelector(".site-nav");
 
 navToggle.addEventListener("click", () => {
