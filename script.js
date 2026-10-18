@@ -1,19 +1,19 @@
 const navToggle = document.querySelector(".nav-toggle");
 
-document.querySelectorAll(".resource-grid a").forEach((link) => {
-  const isVideo = Boolean(link.closest("#videos"));
-  const isPdf = new URL(link.href).pathname.toLowerCase().endsWith(".pdf");
+document.querySelectorAll(".resource-grid a, .resource-grid button[data-video-id]").forEach((link) => {
+  const isVideo = link.hasAttribute("data-video-id");
+  const isPdf = link.tagName === "A" && new URL(link.href).pathname.toLowerCase().endsWith(".pdf");
   if (!isVideo && !isPdf) return;
 
   link.classList.add("resource-link");
-  link.rel = "noopener noreferrer";
+  if (link.tagName === "A") link.rel = "noopener noreferrer";
   const action = document.createElement("span");
   action.className = "resource-action";
   const icon = document.createElement("i");
   icon.setAttribute("data-lucide", isVideo ? "play" : "file-text");
   icon.setAttribute("aria-hidden", "true");
   action.append(icon, document.createTextNode(isVideo ? "Play Video" : "View PDF"));
-  action.title = isVideo ? "Play video in a new tab" : "View PDF in a new tab";
+  action.title = isVideo ? "Play video here" : "View PDF in a new tab";
   link.append(action);
 });
 window.lucide?.createIcons();
@@ -22,17 +22,27 @@ const videoDialog = document.querySelector(".video-dialog");
 const videoPlayer = videoDialog.querySelector(".video-dialog-player");
 const videoTitle = videoDialog.querySelector("#video-dialog-title");
 
-document.querySelectorAll("#videos a[data-video-id]").forEach((link) => {
+document.querySelectorAll(".resource-grid button[data-video-id]").forEach((link) => {
   link.addEventListener("click", (event) => {
-    if (!videoDialog.showModal) return;
-    event.preventDefault();
     videoTitle.textContent = link.dataset.videoTitle;
+    if (!/^https?:$/.test(window.location.protocol)) {
+      const notice = document.createElement("p");
+      notice.className = "video-dialog-notice";
+      notice.textContent = "Open this website through its published address or a local HTTP server to play videos.";
+      videoPlayer.replaceChildren(notice);
+      videoDialog.showModal();
+      return;
+    }
     const frame = document.createElement("iframe");
-    frame.src = `https://www.youtube-nocookie.com/embed/${link.dataset.videoId}?autoplay=1&rel=0`;
+    const embed = new URL(`https://www.youtube.com/embed/${link.dataset.videoId}`);
+    embed.searchParams.set("autoplay", "1");
+    embed.searchParams.set("rel", "0");
+    embed.searchParams.set("origin", window.location.origin);
+    frame.src = embed.href;
     frame.title = link.dataset.videoTitle;
     frame.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share";
     frame.allowFullscreen = true;
-    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.referrerPolicy = "origin";
     videoPlayer.replaceChildren(frame);
     videoDialog.showModal();
   });
