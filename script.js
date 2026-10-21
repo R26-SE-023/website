@@ -2,7 +2,7 @@ const navToggle = document.querySelector(".nav-toggle");
 
 document.querySelectorAll(".resource-grid a, .resource-grid button[data-video-id]").forEach((link) => {
   const isVideo = link.hasAttribute("data-video-id");
-  const isPdf = link.tagName === "A" && new URL(link.href).pathname.toLowerCase().endsWith(".pdf");
+  const isPdf = link.tagName === "A" && (link.hasAttribute("data-pdf-preview") || new URL(link.href).pathname.toLowerCase().endsWith(".pdf"));
   if (!isVideo && !isPdf) return;
 
   link.classList.add("resource-link");
@@ -25,7 +25,7 @@ const pdfLoading = pdfDialog.querySelector(".pdf-loading");
 const pdfExternal = pdfDialog.querySelector(".pdf-open-external");
 
 document.querySelectorAll("#documents .resource-grid a, #slides .resource-grid a").forEach((link) => {
-  if (!new URL(link.href).pathname.toLowerCase().endsWith(".pdf")) return;
+  if (!link.hasAttribute("data-pdf-preview") && !new URL(link.href).pathname.toLowerCase().endsWith(".pdf")) return;
   link.addEventListener("click", (event) => {
     event.preventDefault();
     const title = link.firstChild.textContent.trim();
@@ -33,7 +33,7 @@ document.querySelectorAll("#documents .resource-grid a, #slides .resource-grid a
     pdfFrame.title = title;
     pdfExternal.href = link.href;
     pdfLoading.hidden = false;
-    pdfFrame.src = link.href;
+    pdfFrame.src = link.dataset.pdfPreview || link.href;
     pdfDialog.showModal();
   });
 });
