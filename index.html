@@ -364,9 +364,7 @@
           <a href="slides/AI-Powered Research Gap Identifier & Trend Analyzer  (1).pdf" target="_blank">
             Progress Presentation 2 <span>PP2</span>
           </a>
-          <a href="slides/final-presentation.pdf" target="_blank">
-            Final Presentation <span>Final assessment</span>
-          </a>
+          <div class="resource-unavailable">Final Presentation <span>PDF coming soon</span></div>
         </div>
       </section>
 
@@ -404,6 +402,24 @@
             <button class="video-loading-reveal" type="button" hidden>Show player</button>
           </div>
           <div class="video-player-mount"></div>
+        </div>
+      </dialog>
+
+      <dialog class="pdf-dialog" aria-labelledby="pdf-dialog-title">
+        <div class="video-dialog-header">
+          <h2 id="pdf-dialog-title"></h2>
+          <div class="pdf-dialog-actions">
+            <a class="pdf-open-external" href="#" target="_blank" rel="noopener noreferrer" aria-label="Open PDF in a new tab" title="Open PDF in a new tab">
+              <i data-lucide="external-link" aria-hidden="true"></i>
+            </a>
+            <button class="pdf-dialog-close video-dialog-close" type="button" aria-label="Close PDF" title="Close PDF">
+              <i data-lucide="x" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div class="pdf-dialog-content">
+          <p class="pdf-loading" role="status">Loading PDF...</p>
+          <iframe title="PDF viewer"></iframe>
         </div>
       </dialog>
 

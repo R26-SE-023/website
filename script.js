@@ -13,10 +13,43 @@ document.querySelectorAll(".resource-grid a, .resource-grid button[data-video-id
   icon.setAttribute("data-lucide", isVideo ? "play" : "file-text");
   icon.setAttribute("aria-hidden", "true");
   action.append(icon, document.createTextNode(isVideo ? "Play Video" : "View PDF"));
-  action.title = isVideo ? "Play video here" : "View PDF in a new tab";
+  action.title = isVideo ? "Play video here" : "View PDF here";
   link.append(action);
 });
 window.lucide?.createIcons();
+
+const pdfDialog = document.querySelector(".pdf-dialog");
+const pdfTitle = pdfDialog.querySelector("#pdf-dialog-title");
+const pdfFrame = pdfDialog.querySelector("iframe");
+const pdfLoading = pdfDialog.querySelector(".pdf-loading");
+const pdfExternal = pdfDialog.querySelector(".pdf-open-external");
+
+document.querySelectorAll("#documents .resource-grid a, #slides .resource-grid a").forEach((link) => {
+  if (!new URL(link.href).pathname.toLowerCase().endsWith(".pdf")) return;
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    const title = link.firstChild.textContent.trim();
+    pdfTitle.textContent = title;
+    pdfFrame.title = title;
+    pdfExternal.href = link.href;
+    pdfLoading.hidden = false;
+    pdfFrame.src = link.href;
+    pdfDialog.showModal();
+  });
+});
+
+pdfFrame.addEventListener("load", () => {
+  pdfLoading.hidden = true;
+});
+pdfDialog.querySelector(".pdf-dialog-close").addEventListener("click", () => pdfDialog.close());
+pdfDialog.addEventListener("click", (event) => {
+  if (event.target === pdfDialog) pdfDialog.close();
+});
+pdfDialog.addEventListener("close", () => {
+  pdfFrame.removeAttribute("src");
+  pdfTitle.textContent = "";
+  pdfExternal.removeAttribute("href");
+});
 
 const videoDialog = document.querySelector(".video-dialog");
 const videoMount = videoDialog.querySelector(".video-player-mount");

@@ -450,7 +450,8 @@ h3 {
   border-color: #397c79;
 }
 
-.video-dialog {
+.video-dialog,
+.pdf-dialog {
   width: min(960px, calc(100vw - 32px));
   max-width: none;
   max-height: calc(100dvh - 32px);
@@ -462,7 +463,8 @@ h3 {
   overflow: auto;
 }
 
-.video-dialog::backdrop {
+.video-dialog::backdrop,
+.pdf-dialog::backdrop {
   background: rgba(11, 27, 38, 0.78);
 }
 
@@ -498,6 +500,66 @@ h3 {
 .video-dialog-close svg {
   width: 20px;
   height: 20px;
+}
+
+.pdf-dialog {
+  width: min(1100px, calc(100vw - 24px));
+}
+
+.pdf-dialog .video-dialog-header h2 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.pdf-dialog-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.pdf-open-external {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  color: inherit;
+  background: #edf2f3;
+}
+
+.pdf-open-external svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pdf-dialog-content {
+  position: relative;
+  height: min(780px, calc(100dvh - 104px));
+  min-height: 300px;
+  background: #f3f6f8;
+}
+
+.pdf-dialog-content iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.pdf-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  padding: 12px 16px;
+  transform: translate(-50%, -50%);
+  color: var(--ink);
+  background: white;
+}
+
+.pdf-loading[hidden] {
+  display: none;
 }
 
 .video-dialog-player {
@@ -1092,6 +1154,7 @@ body.dark-mode .module-card,
 body.dark-mode .person-card,
 body.dark-mode .resource-grid a,
 body.dark-mode .resource-grid .resource-video,
+body.dark-mode .resource-grid .resource-unavailable,
 body.dark-mode .timeline-card {
   background: #0d2134;
   border-color: var(--line);
@@ -1104,6 +1167,16 @@ body.dark-mode .video-dialog {
 
 body.dark-mode .video-dialog-header h2 {
   color: var(--ink);
+}
+
+body.dark-mode .pdf-dialog {
+  color: #15202b;
+  background: white;
+}
+
+body.dark-mode .pdf-dialog .video-dialog-header h2,
+body.dark-mode .pdf-loading {
+  color: #15202b;
 }
 
 body.dark-mode .signal-card {
