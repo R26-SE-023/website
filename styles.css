@@ -883,6 +883,31 @@ h3 {
   font-weight: 800;
   word-break: break-word;
 }
+
+.person-social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin-top: 16px;
+}
+
+.person-social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.person-social-links a:hover,
+.person-social-links a:focus-visible {
+  text-decoration: underline;
+}
+
+.person-social-links svg {
+  width: 17px;
+  height: 17px;
+}
 footer {
   padding: 28px 5vw;
   color: var(--muted);
