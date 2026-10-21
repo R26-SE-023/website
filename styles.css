@@ -307,6 +307,30 @@ h3 {
   line-height: 1.65;
 }
 
+.literature-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--blue);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.literature-open svg {
+  width: 17px;
+  height: 17px;
+}
+
+.literature-open:hover,
+.literature-open:focus-visible {
+  text-decoration: underline;
+}
+
 .feature-section {
   background: var(--soft);
 }
@@ -451,7 +475,8 @@ h3 {
 }
 
 .video-dialog,
-.pdf-dialog {
+.pdf-dialog,
+.literature-dialog {
   width: min(960px, calc(100vw - 32px));
   max-width: none;
   max-height: calc(100dvh - 32px);
@@ -464,8 +489,80 @@ h3 {
 }
 
 .video-dialog::backdrop,
-.pdf-dialog::backdrop {
+.pdf-dialog::backdrop,
+.literature-dialog::backdrop {
   background: rgba(11, 27, 38, 0.78);
+}
+
+.literature-dialog {
+  width: min(820px, calc(100vw - 32px));
+}
+
+.literature-dialog .video-dialog-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.literature-dialog-content {
+  padding: 12px clamp(20px, 4vw, 44px) 36px;
+  line-height: 1.7;
+}
+
+.literature-dialog-content p {
+  margin: 18px 0;
+}
+
+.literature-references-section {
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.literature-references-section summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.literature-references-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.literature-references-section summary svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+.literature-references-section[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.literature-references-section summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.literature-references {
+  padding-left: 28px;
+}
+
+.literature-references li {
+  padding-left: 4px;
+  margin-bottom: 14px;
+  overflow-wrap: anywhere;
+}
+
+.literature-references a {
+  color: var(--blue);
+  text-decoration: underline;
 }
 
 .video-dialog-header {
@@ -1160,8 +1257,13 @@ body.dark-mode .timeline-card {
   border-color: var(--line);
 }
 
-body.dark-mode .video-dialog {
+body.dark-mode .video-dialog,
+body.dark-mode .literature-dialog {
   color: var(--ink);
+  background: #0d2134;
+}
+
+body.dark-mode .literature-dialog .video-dialog-header {
   background: #0d2134;
 }
 

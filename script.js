@@ -18,6 +18,16 @@ document.querySelectorAll(".resource-grid a, .resource-grid button[data-video-id
 });
 window.lucide?.createIcons();
 
+const literatureDialog = document.querySelector(".literature-dialog");
+document.querySelector(".literature-open").addEventListener("click", () => literatureDialog.showModal());
+literatureDialog.querySelector(".literature-dialog-close").addEventListener("click", () => literatureDialog.close());
+literatureDialog.addEventListener("close", () => {
+  literatureDialog.querySelector(".literature-references-section").open = false;
+});
+literatureDialog.addEventListener("click", (event) => {
+  if (event.target === literatureDialog) literatureDialog.close();
+});
+
 const pdfDialog = document.querySelector(".pdf-dialog");
 const pdfTitle = pdfDialog.querySelector("#pdf-dialog-title");
 const pdfFrame = pdfDialog.querySelector("iframe");
